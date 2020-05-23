@@ -1,1 +1,6 @@
 # Dissertation_Image_segmentation
+## Introduction of the model
+This model is a semantic image segmentation model, which assigns label to each pixel of an image to partition different objects into segments. Semantic image segmentation means that there is no distinguishing between different plants, e.g. plant_1 and plant_2. They are all classified as plants as a whole. There exists models which can distinguish different objects of the same category. However, in this case, this function does not provide too much helps.
+The whole model is composed of two parts, namely backbone part and classifier part. The backbone part has been pre-trained on a large dataset (may exceed over 1 million of training examples) to have a generalizing ability, while the classifier part is untrained, and should be fine-tuned based on specific tasks. This structure takes the advantage of transfer learning ability of deep learning models, which means that a well trained model can perform well in different similar tasks.
+The main metric used to measure the performance of the model is Intersection over Union (IoU), which is 
+![Visual explanation of IoU](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/IOU.png)
