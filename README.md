@@ -38,7 +38,7 @@ This model is used to automatically segment each object within crowdsourced imag
 |:--:| 
 | *The label of binary classes for the second model to refine prediction* |
 
-This process involves downloading masks from the Labelbox. These codes correspond to the file of segmentation_data_processing.ipynb
+This process involves downloading masks from the Labelbox. These codes correspond to the file of *segmentation_data_processing.ipynb*
 
 ### Train the two models (the first model with 8 classes and a second model for binary classes) using the original images and labels
 
@@ -60,7 +60,7 @@ The model is selected based on its IoU of the validation set, which in this case
 
 ### Reverse selection of the bounding box of the detected objects
 
-Since I would like to crop the area of plants, and further refine them using the second model, I need to obtain the coordinates of a bounding box of the segmented objects based on its maximum and minimum vertical and horizontal coordinates. This is achieved by using DBSCAN of sklearn (https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html) in get_region_v2 of utils_d.py, which is an unsupervised clustering algorithm that automatically partitions disjoint objects. Therefore, distinguishing objects within a class can be partitioned to be drawn an individual bounding box. Once the coordinates of each object are determined, bounding boxes of each disjoint object can be drawn as shown by the following figure.
+Since I would like to crop the area of plants, and further refine them using the second model, I need to obtain the coordinates of a bounding box of the segmented objects based on its maximum and minimum vertical and horizontal coordinates. This is achieved by using DBSCAN of sklearn (https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html) in *get_region_v2* of *utils_d.py*, which is an unsupervised clustering algorithm that automatically partitions disjoint objects. Therefore, distinguishing objects within a class can be partitioned to be drawn an individual bounding box. Once the coordinates of each object are determined, bounding boxes of each disjoint object can be drawn as shown by the following figure.
 
 ![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/fig7_annotations_with_rect.png)
 |:--:| 
