@@ -6,7 +6,11 @@ This model is a semantic image segmentation model, which assigns label to each p
 The whole model is composed of two parts, namely backbone part and classifier part. The backbone part has been pre-trained on a large dataset (may exceed over 1 million of training examples) to have a generalizing ability, while the classifier part is untrained, and should be fine-tuned based on specific tasks. This structure takes the advantage of transfer learning ability of deep learning models, which means that a well trained model can perform well in different similar tasks.
 
 The main metric used to measure the performance of the model is Intersection over Union (IoU), which is 
-![Visual explanation of IoU](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/IOU.png)
+
+![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/IOU.png)
+|:--:| 
+| *Visual explanation of IoU* |
+
 
 ## The aim of this model
 
@@ -15,13 +19,24 @@ This model is used to automatically segment each object within crowdsourced imag
 ## Process
 
 ### Prepare input images from crowdsourced with the following image as an example
-![An example of training image](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/original_image.jpg)
+![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/original_image.jpg)
+|:--:| 
+| *An example of training image* |
+
 
 ### Hand labelling the image using an online tool (https://app.labelbox.com/)
-![The interface of labelling tool](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/working.PNG)
+![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/working.PNG)
+|:--:| 
+| *The interface of labelling tool* |
 ### Obtain the label for training examples (overall and local region)
-![The label of overall classes for the first model](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/label.png)
-![The label of binary classes for the second model to refine prediction](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/segmentated_label.png)
+
+![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/label.png)
+|:--:| 
+| *The label of overall classes for the first model* |
+
+![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/segmentated_label.png)
+|:--:| 
+| *The label of binary classes for the second model to refine prediction* |
 
 This process involves downloading masks from the Labelbox. These codes correspond to the file of segmentation_data_processing.ipynb
 
@@ -35,23 +50,33 @@ The model is selected based on its IoU of the validation set, which in this case
 
 ### Results of overall segmentation
 
-![Segmented objects](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/predicted.png)
+![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/predicted.png)
+|:--:| 
+| *Segmented objects* |
 
-![comparison of label and segmentation results, with an Intersection over Union (IoU) of 0.82966 for all classes and 0.56250 for plants](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/superimpose.png)
+![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/superimpose.png)
+|:--:| 
+| *comparison of label and segmentation results, with an Intersection over Union (IoU) of 0.82966 for all classes and 0.56250 for plants* |
 
 ### Reverse selection of the bounding box of the detected objects
 
 Since I would like to crop the area of plants, and further refine them using the second model, I need to obtain the coordinates of a bounding box of the segmented objects based on its maximum and minimum vertical and horizontal coordinates. This is achieved by using DBSCAN of sklearn (https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html) in get_region_v2 of utils_d.py, which is an unsupervised clustering algorithm that automatically partitions disjoint objects. Therefore, distinguishing objects within a class can be partitioned to be drawn an individual bounding box. Once the coordinates of each object are determined, bounding boxes of each disjoint object can be drawn as shown by the following figure.
 
-![bounding box of each object](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/fig7_annotations_with_rect.png)
+![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/fig7_annotations_with_rect.png)
+|:--:| 
+| *bounding box of each object* |
 
 ### Refined results
 
 After having the bounding box, I can crop the plant from the whole image, and feed it into the second model to refine the prediction. The refined prediction is shown as follow.
 
-![selecting interested local area and refining predictions in the area](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/compare.png)
+![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/compare.png)
+|:--:| 
+| *selecting interested local area and refining predictions in the area* |
 
-![comparison of label and segmentation results in the local refined area, with an Intersection over Union (IoU) of 0.80745, increased from 0.56250](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/re1com.png)
+![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/re1com.png)
+|:--:| 
+| *comparison of label and segmentation results in the local refined area, with an Intersection over Union (IoU) of 0.80745, increased from 0.56250* |
 
 ### Image registration
 
@@ -60,6 +85,10 @@ The first step is to detect the position of the window using the first model com
 
 The second step is to select the area of window and make affine transformation on the whole image. The selection of area of window is based on traditional computer vision toolkits in opencv rather than deep learning.
 
-![The process of image registration based on the window](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/rect.png)
+![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/rect.png)
+|:--:| 
+| *The process of image registration based on the window* |
 
-![Final result](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/register_outfalse.png)
+![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/register_outfalse.png)
+|:--:| 
+| *Final result* |
