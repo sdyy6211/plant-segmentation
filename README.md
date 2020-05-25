@@ -46,8 +46,6 @@ Deeplab v3+ with a backbone model of resnet101 is used in this project, implemen
 
 For details of training, I freeze the parameters of the backbone model, and only trained the deeplab head parameters with epoch number of 100 and learning rate of 0.01 for the first model, and epoch number of 100 and same learning rate for the second model. The optimizer is Adam (https://arxiv.org/abs/1412.6980) and the loss function is cross entropy loss with 8 classes for the first model and 2 classes for the second model. A scheduling stepdown of learning rate is applied to both models, which means the learning rate will reduce to its 1/10 every epoch of 50 (for the first model) or 33 (for the second model). This is used for the optimizer to better find the minimum point of the loss function.
 
-The model is selected based on its IoU of the validation set, which in this case is the 20 test images. (This may cause overfitting of the performance of the model in the test set, so this performance is measured based on the average of IoU of the last 20 epoch models).
-
 ### Results of overall segmentation
 
 ![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/predicted.png)
@@ -95,3 +93,5 @@ The third step is to select the area of window and make affine transformation on
 ![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/register_outfalse.png)
 |:--:| 
 | *Final result* |
+
+The final IoU of the two models on the test set are approximately 62% and 53% for the first and second model respectively.
