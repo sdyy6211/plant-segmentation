@@ -80,10 +80,13 @@ After having the bounding box, I can crop the plant from the whole image, and fe
 
 ### Image registration
 
-Since the area of a plant in a picture is significantly affected by the angel of the picture taken, it would be better to register two images with different angels based on the window in the image using an affine transformation. The registration has two steps. 
-The first step is to detect the position of the window using the first model combined with a reverse selection of the bounding box of the window, which is similar to the detection of plants.
+Since the area of a plant in a picture is significantly affected by the angel of the picture taken, it would be better to register two images with different angels based on the window in the image using an affine transformation. The registration has three steps.
 
-The second step is to select the area of window and make affine transformation on the whole image. The selection of area of window is based on traditional computer vision toolkits in opencv rather than deep learning.
+The first step is to find the most similar image from the training set. The similarity is measured by the *cv2.matchTemplate*
+
+The second step is to detect the position of the window using the first model combined with a reverse selection of the bounding box of the window, which is similar to the detection of plants.
+
+The third step is to select the area of window and make affine transformation on the whole image. The selection of area of window is based on traditional computer vision toolkits in opencv rather than deep learning.
 
 ![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/rect.png)
 |:--:| 
