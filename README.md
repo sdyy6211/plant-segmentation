@@ -46,7 +46,7 @@ Deeplab v3+ with a backbone model of resnet101 is used in this project, implemen
 
 For details of training, I freeze the parameters of the backbone model, and only trained the deeplab head parameters with epoch number of 100 and learning rate of 0.01 for the first model, and epoch number of 100 and same learning rate for the second model. The optimizer is Adam (https://arxiv.org/abs/1412.6980) and the loss function is cross entropy loss with 8 classes for the first model and 2 classes for the second model. A scheduling stepdown of learning rate is applied to both models, which means the learning rate will reduce to its 1/10 every epoch of 50 (for the first model) or 33 (for the second model). This is used for the optimizer to better find the minimum point of the loss function.
 
-update on 6.4 -- the two models were retrained by using Automatic Mixed Precision (AMP), which enlarges the resolution of resized images (from 400x250 to 900x900 for the first model and 400x400 for the second model) by reducing required RAM in training session given the same GPU (RTX 2070 with 8GB RAM).
+update on 6.4 -- the two models were retrained by using Automatic Mixed Precision (AMP), which enlarges the resolution of resized images (from 400x250 to 900x900 for the first model and 400x400 for the second model) by reducing required RAM in training session given the same GPU (RTX 2070 with 8GB RAM). By doing so, the model now can segment the images in a more precise way since it operates on images with higher resolution.
 
 ### Results of overall segmentation
 
