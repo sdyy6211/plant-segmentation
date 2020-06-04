@@ -201,7 +201,7 @@ def find_rectangle(image,area_thres,max_count,decay,min_poly, max_poly):
 
     ret,thresh = cv2.threshold(gray,200,255,1)
 
-    contours,h = cv2.findContours(thresh,1,2)
+    _,contours,h = cv2.findContours(thresh,1,2)
     count = 0
     while 1:
         for cnt in contours:
@@ -566,21 +566,23 @@ def train(model, iterator, optimizer, criterion,loss_list,num_c):
     iou = []
 
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+    gradscaler = torch.cuda.amp.GradScaler()
     
     model.train()
     
     for i in iterator:
         
-        input = i['image'].to(device)
+        input = i['image'].to(device)#.half()
         target = i['labels'].to(device)
         res = model(input)
         loss = criterion(res,target.long())
         loss_.append(loss.item()) 
         iou.append(IoU_batch(res,target,num_c))
-        loss.backward()
-        optimizer.step()
+        gradscaler.scale(loss).backward()
+        gradscaler.step(optimizer)
         loss_list.append(loss.item())
-        optimizer.zero_grad()
+        gradscaler.update()
+        #optimizer.zero_grad()
         
     return np.mean(loss_),np.mean(iou)
 
@@ -596,7 +598,7 @@ def evaluate(model, iterator, criterion,num_c):
     
         for i in iterator:
 
-            input = i['image'].to(device)
+            input = i['image'].to(device)#.half()
             target = i['labels'].to(device)
             res = model(input)
             loss = criterion(res,target.long())
