@@ -383,15 +383,19 @@ def evaluate(model, iterator, criterion,num_c): # evaluate the model
         
     return np.mean(loss_),np.mean(iou)
 
-def predict(image,transform_deeplab,dlab2,dlab2_detail,label,original_size,thres=0.001,scale = 0.05): # make predictions
+def predict(image,transform_deeplab,transform_deeplab_detail,dlab2,dlab2_detail,label,original_size,thres=0.001,scale = 0.05):
 
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
     
     validation = transform_deeplab(image).unsqueeze(0).to(device)
-
-    coordinates,prob = get_region_v2(dlab2(validation,interpolate = False).squeeze(),
-                                  label = label,original_size = original_size,
-                                  thres = thres,scale = scale)
+    try:
+        coordinates,prob = get_region_v2(dlab2(validation,interpolate = False).squeeze(),
+                                      label = label,original_size = original_size,
+                                      thres = thres,scale = scale)
+    except:
+        coordinates,prob = get_region_v2(dlab2(validation).squeeze(),
+                                      label = label,original_size = original_size,
+                                      thres = thres,scale = scale)
 
     coor_list = []
     mask_list = []
@@ -407,7 +411,7 @@ def predict(image,transform_deeplab,dlab2,dlab2_detail,label,original_size,thres
         y1 = co[1]
         y2 = co[3]
 
-        if 0 not in np.array(image)[int(y1):int(y2),int(x1):int(x2)].shape: # to filter out areas with 0
+        if 0 not in np.array(image)[int(y1):int(y2),int(x1):int(x2)].shape:
 
             coor_list.append([(int(x1),int(y1)),(int(x2),int(y2))])
             filtered_co.append(co)
@@ -417,7 +421,7 @@ def predict(image,transform_deeplab,dlab2,dlab2_detail,label,original_size,thres
 
             original_size = frcnn_cropped.size
 
-            val = transform_deeplab(frcnn_cropped).unsqueeze(0).to(device)
+            val = transform_deeplab_detail(frcnn_cropped).unsqueeze(0).to(device)
 
             res_test_2 = dlab2_detail(val)
 
@@ -576,3 +580,27 @@ def decode_color(image,colors): # decode the segmented results using specified c
                     img[H,W,:] = colors[i]
                     
     return np.uint8(img)
+
+def draw_bounding_box(image,model,transform,colors,labelnames,dpi,fontsize = 14,line_width = 2): # drawing bounding boxes for each class in the image
+    device = torch.device("cuda:0" if torch.cuda.is_available() else 'cpu')
+    validation = transform(image).unsqueeze(0).to(device)
+    density = model(validation,interpolate = False).squeeze()
+    labels = list(torch.argmax(density,axis = 0).unique().detach().cpu().numpy())
+    color_image = image
+    color_image_array = np.array(color_image)
+    text_com = []
+    for i in labels:
+        coordinates,prob = get_region_v2(density,i,image.size,scale = 0.05)
+        for j in range(len(coordinates)):
+            coor = [int(i) for i in coordinates[j]]
+            color_image_array = cv2.rectangle(color_image_array,tuple(coor[0:2]),tuple(coor[2:4]),colors[i],line_width)
+            position = tuple([int((coor[0]+coor[2])/2.25),int((coor[1]+coor[3])/2)])
+            text_com.append([position,labelnames[i],colors[i]])
+    plt.figure(dpi = dpi)
+    plt.imshow(color_image_array);plt.axis('off')
+    dom = decode_color(torch.argmax(density.squeeze(), dim=0).detach().cpu().numpy(),colors)
+    plt.imshow(np.array(Image.fromarray(dom).resize(image.size)),alpha = 0.5);plt.axis('off')
+    for i in range(len(text_com)):
+        colour = [i/255 for i in text_com[i][2]]
+        plt.text(text_com[i][0][0],text_com[i][0][1],text_com[i][1],color = 'white',fontsize= fontsize)
+        plt.text(text_com[i][0][0],text_com[i][0][1],text_com[i][1],color = colour,alpha=0.15,fontsize = fontsize)
