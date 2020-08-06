@@ -1,4 +1,4 @@
-# Dissertation_Image_segmentation
+# Plant-segmentation
 ## Introduction of the model
 
 This model is a semantic image segmentation model, which assigns label to each pixel of an image to partition different objects into segments. Semantic image segmentation means that there is no distinguishing between different plants, e.g. plant_1 and plant_2. They are all classified as plants as a whole. There exists models which can distinguish different objects of the same category. However, in this case, this function does not provide too much helps.
