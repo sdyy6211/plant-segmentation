@@ -262,7 +262,7 @@ def get_frequency(csv,image_size,num_class,dic,label_folder): # calculate the fr
         
     return class_frequency_list    
 
-def IoU(pred, target, n_classes): # calculate the IoU for a single image
+def IoU(pred, target, n_classes,return_all = False): # calculate the IoU for a single image
 
     ious = []
     pred = pred.view(-1)
@@ -281,7 +281,13 @@ def IoU(pred, target, n_classes): # calculate the IoU for a single image
             ious.append(float(intersection) / float(max(union, 1)))
             print(cls,float(intersection) / float(max(union, 1)))
     ious = [i for i in ious if np.isnan(i) == False]
-    return np.mean(ious)
+    if return_all:
+        
+        return np.mean(ious),np.array(ious)
+    
+    else:
+        
+        return np.mean(ious)
 
 def IoU_batch(pred_batch, target_batch, n_classes): # calculate the IoU for a batch of images
     iou_batch = []
@@ -346,22 +352,28 @@ def train(model, iterator, optimizer, criterion,loss_list,num_c): # train the mo
     for i in iterator:
         
         input = i['image'].to(device)#.half()
+        
         target = i['labels'].to(device)
+        
         res = model(input)
+        
         loss = criterion(res,target.long())
+        
         loss_.append(loss.item()) 
+        
         iou.append(IoU_batch(res,target,num_c))
       
         gradscaler.scale(loss).backward() # automatic mixed precision
+        
         gradscaler.step(optimizer) # automatic mixed precision
         
         loss_list.append(loss.item())
+        
         gradscaler.update() # automatic mixed precision
-        
-        
+               
     return np.mean(loss_),np.mean(iou)
 
-def evaluate(model, iterator, criterion,num_c): # evaluate the model
+def evaluate(model, iterator, criterion,loss_list,num_c): # evaluate the model
     loss_ = []
     iou = []
 
@@ -374,12 +386,18 @@ def evaluate(model, iterator, criterion,num_c): # evaluate the model
         for i in iterator:
 
             input = i['image'].to(device)
+            
             target = i['labels'].to(device)
+            
             res = model(input)
+            
             loss = criterion(res,target.long())
+            
             loss_.append(loss.item()) 
+            
+            loss_list.append(loss.item())
+            
             iou.append(IoU_batch(res,target,num_c))
-
         
     return np.mean(loss_),np.mean(iou)
 
@@ -440,6 +458,51 @@ def predict(image,transform_deeplab,transform_deeplab_detail,dlab2,dlab2_detail,
         coor_list[mask][0][0]:coor_list[mask][1][0]] = om_list[mask]
         
     return binary_image
+
+def predict_by_class(img,class_,colors = None):
+    
+    validation = transform_deeplab(ori_img).unsqueeze(0).cuda()
+    
+    res = dlab2(validation,interpolate = False)
+    
+    res = F.interpolate(res, size=(img.size[1],
+                                   img.size[0]), mode='bilinear', align_corners=False)
+    
+    res = torch.argmax(res.squeeze(),dim = 0).squeeze().detach().cpu().numpy().astype(np.uint8)
+    
+    if class_ == 'all':
+        
+        if colors == None:
+            
+            raise Exception('Please specify colors')
+        
+        return decode_color(res,colors)
+    
+    else:
+    
+        res[res!=class_] = 0
+
+        res[res == class_] = 1
+
+        return res
+    
+def overlay(image,mask,alpha,color=None,color_bg=None,alpha_bg=None): # decode the segmented results using specified colors
+    
+    if isinstance(image,torch.Tensor):
+        image = image.detach().cpu().numpy()
+    if isinstance(image,PIL.JpegImagePlugin.JpegImageFile):
+        image = np.array(image)
+    if len(image.shape) <= 1:
+        image = image.reshape(-1,1)
+        
+    if isinstance(mask,PIL.Image.Image):
+        return Image.blend(Image.fromarray(image), mask, alpha)
+    else:
+        t = mask.astype(bool)
+        f = np.logical_not(mask.astype(bool))
+        image[t,:] = image[t,:]*(1-alpha)+np.array(color)*alpha
+        image[f,:] = image[f,:]*(1-alpha_bg)+np.array(color_bg)*alpha_bg
+        return Image.fromarray(image)
 
 ############## functions used to position the window and plants ##############
 
@@ -581,7 +644,7 @@ def decode_color(image,colors): # decode the segmented results using specified c
                     
     return np.uint8(img)
 
-def draw_bounding_box(image,model,transform,colors,labelnames,dpi,fontsize = 14,line_width = 2): # drawing bounding boxes for each class in the image
+def draw_bounding_box(image,model,transform,colors,labelnames,dpi,fontsize = 14,line_width = 2,transparency = 0.5): # drawing bounding boxes for each class in the image
     device = torch.device("cuda:0" if torch.cuda.is_available() else 'cpu')
     validation = transform(image).unsqueeze(0).to(device)
     density = model(validation,interpolate = False).squeeze()
@@ -593,14 +656,16 @@ def draw_bounding_box(image,model,transform,colors,labelnames,dpi,fontsize = 14,
         coordinates,prob = get_region_v2(density,i,image.size,scale = 0.05)
         for j in range(len(coordinates)):
             coor = [int(i) for i in coordinates[j]]
-            color_image_array = cv2.rectangle(color_image_array,tuple(coor[0:2]),tuple(coor[2:4]),colors[i],line_width)
+            if line_width != None:
+                color_image_array = cv2.rectangle(color_image_array,tuple(coor[0:2]),tuple(coor[2:4]),colors[i],line_width)
             position = tuple([int((coor[0]+coor[2])/2.25),int((coor[1]+coor[3])/2)])
             text_com.append([position,labelnames[i],colors[i]])
     plt.figure(dpi = dpi)
     plt.imshow(color_image_array);plt.axis('off')
     dom = decode_color(torch.argmax(density.squeeze(), dim=0).detach().cpu().numpy(),colors)
-    plt.imshow(np.array(Image.fromarray(dom).resize(image.size)),alpha = 0.5);plt.axis('off')
-    for i in range(len(text_com)):
-        colour = [i/255 for i in text_com[i][2]]
-        plt.text(text_com[i][0][0],text_com[i][0][1],text_com[i][1],color = 'white',fontsize= fontsize)
-        plt.text(text_com[i][0][0],text_com[i][0][1],text_com[i][1],color = colour,alpha=0.15,fontsize = fontsize)
+    plt.imshow(np.array(Image.fromarray(dom).resize(image.size)),alpha = transparency);plt.axis('off')
+    if fontsize != None:
+        for i in range(len(text_com)):
+            colour = [i/255 for i in text_com[i][2]]
+            plt.text(text_com[i][0][0],text_com[i][0][1],text_com[i][1],color = 'white',fontsize= fontsize)
+            plt.text(text_com[i][0][0],text_com[i][0][1],text_com[i][1],color = colour,alpha=0.15,fontsize = fontsize)
