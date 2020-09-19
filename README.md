@@ -81,9 +81,11 @@ After having the bounding box, I can crop the plant from the whole image, and fe
 
 The final IoU of the two models on the test set are approximately 62% and 53% for the first and second model respectively.
 
+The following image shows the model's performance under other scences
+
 ![](https://github.com/sdyy6211/plant-segmentation/blob/amp/gitpic/figure9.png?raw=true)
 |:--:| 
-| *The segmented results under other scences, demonstrating a strong generalizing ability of the model* |
+| *The segmented results under other scences with blue color representing the predicted plant area, demonstrating a strong generalizing ability of the model* |
 
 
 ### Combination of photogrammetry
@@ -93,6 +95,8 @@ A direct comparison of areas in photographs taken at very different angles could
 ![](https://github.com/sdyy6211/plant-segmentation/blob/amp/gitpic/figure4.png?raw=true)
 |:--:| 
 | *Process of combining photogrammetry with image segmentation* |
+
+The final product of the combination is as follow
 
 ![](https://github.com/sdyy6211/plant-segmentation/blob/amp/gitpic/figure10.png?raw=true)
 |:--:| 
