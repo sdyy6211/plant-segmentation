@@ -80,3 +80,20 @@ After having the bounding box, I can crop the plant from the whole image, and fe
 
 
 The final IoU of the two models on the test set are approximately 62% and 53% for the first and second model respectively.
+
+![](https://github.com/sdyy6211/plant-segmentation/blob/amp/gitpic/figure9.png?raw=true)
+|:--:| 
+| *The segmented results under other scences, demonstrating a strong generalizing ability of the model* |
+
+
+### Combination of photogrammetry
+
+A direct comparison of areas in photographs taken at very different angles could be inaccurate due to the distortions caused by the angle of shooting. To alleviate this, photogrammetry technique is used to build a comprehensive and stereoscopic view of the scene. The photogrammetry is combined with image segmentation in the following way. Firstly, the crowdsourced image dataset are used in 3D model reconstruction to obtain the 3D model using photogrammetry software. This is followed by processing the same image dataset using the image segmentation model to partition the images into different segments to locate each object. Finally, the segmented images are re-mapped onto the 3D model given the known camera poses and mapping scheme. This gives a 3D model with textures segmented into different regions. This can be visualized as
+
+![](https://github.com/sdyy6211/plant-segmentation/blob/amp/gitpic/figure4.png?raw=true)
+|:--:| 
+| *Process of combining photogrammetry with image segmentation* |
+
+![](https://github.com/sdyy6211/plant-segmentation/blob/amp/gitpic/figure10.png?raw=true)
+|:--:| 
+| *The front view of the built segmented 3D photogrammetry model. They are the original model, the model with segmented texture for overall classes and the model with texture for plant class from left to right* |
