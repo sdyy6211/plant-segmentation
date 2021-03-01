@@ -1,0 +1,94 @@
+x_name,window,sky,plants,brick,holes,gate,sign
+1.jpg,1_window.png,1_sky.png,1_plants.png,1_brick.png,1_holes.png,1_gate.png,NAN
+1130_1.jpg,1130_1_window.png,1130_1_sky.png,1130_1_plants.png,1130_1_brick.png,1130_1_holes.png,NAN,NAN
+1130_3.jpg,1130_3_window.png,1130_3_sky.png,NAN,1130_3_brick.png,1130_3_holes.png,NAN,NAN
+2.jpg,2_window.png,2_sky.png,2_plants.png,2_brick.png,2_holes.png,2_gate.png,2_sign.png
+20191029_103954.jpg,20191029_103954_window.png,20191029_103954_sky.png,20191029_103954_plants.png,20191029_103954_brick.png,20191029_103954_holes.png,NAN,NAN
+3.jpg,NAN,3_sky.png,3_plants.png,3_brick.png,3_holes.png,NAN,3_sign.png
+4.jpg,NAN,4_sky.png,4_plants.png,4_brick.png,4_holes.png,NAN,NAN
+5.jpg,5_window.png,5_sky.png,5_plants.png,5_brick.png,5_holes.png,NAN,NAN
+7.jpg,7_window.png,7_sky.png,7_plants.png,7_brick.png,7_holes.png,7_gate.png,7_sign.png
+animage (1).jpg,animage (1)_window.png,animage (1)_sky.png,animage (1)_plants.png,animage (1)_brick.png,NAN,NAN,NAN
+animage (10).jpg,animage (10)_window.png,animage (10)_sky.png,animage (10)_plants.png,animage (10)_brick.png,animage (10)_holes.png,animage (10)_gate.png,animage (10)_sign.png
+animage (11).jpg,animage (11)_window.png,animage (11)_sky.png,animage (11)_plants.png,animage (11)_brick.png,animage (11)_holes.png,animage (11)_gate.png,animage (11)_sign.png
+animage (12).jpg,animage (12)_window.png,animage (12)_sky.png,animage (12)_plants.png,animage (12)_brick.png,NAN,NAN,NAN
+animage (13).jpg,animage (13)_window.png,animage (13)_sky.png,NAN,animage (13)_brick.png,NAN,NAN,NAN
+animage (14).jpg,animage (14)_window.png,animage (14)_sky.png,animage (14)_plants.png,animage (14)_brick.png,NAN,NAN,NAN
+animage (15).jpg,animage (15)_window.png,animage (15)_sky.png,animage (15)_plants.png,animage (15)_brick.png,animage (15)_holes.png,NAN,NAN
+animage (16).jpg,animage (16)_window.png,animage (16)_sky.png,animage (16)_plants.png,animage (16)_brick.png,animage (16)_holes.png,animage (16)_gate.png,animage (16)_sign.png
+animage (17).jpg,animage (17)_window.png,animage (17)_sky.png,animage (17)_plants.png,animage (17)_brick.png,animage (17)_holes.png,animage (17)_gate.png,animage (17)_sign.png
+animage (18).jpg,animage (18)_window.png,animage (18)_sky.png,animage (18)_plants.png,animage (18)_brick.png,animage (18)_holes.png,NAN,NAN
+animage (19).jpg,animage (19)_window.png,animage (19)_sky.png,NAN,animage (19)_brick.png,NAN,NAN,NAN
+animage (2).jpg,animage (2)_window.png,animage (2)_sky.png,animage (2)_plants.png,animage (2)_brick.png,NAN,NAN,NAN
+animage (20).jpg,animage (20)_window.png,animage (20)_sky.png,animage (20)_plants.png,animage (20)_brick.png,NAN,NAN,NAN
+animage (21).jpg,animage (21)_window.png,animage (21)_sky.png,animage (21)_plants.png,animage (21)_brick.png,animage (21)_holes.png,NAN,NAN
+animage (22).jpg,animage (22)_window.png,animage (22)_sky.png,animage (22)_plants.png,animage (22)_brick.png,animage (22)_holes.png,animage (22)_gate.png,animage (22)_sign.png
+animage (23).jpg,animage (23)_window.png,animage (23)_sky.png,animage (23)_plants.png,animage (23)_brick.png,animage (23)_holes.png,animage (23)_gate.png,animage (23)_sign.png
+animage (24).jpg,animage (24)_window.png,animage (24)_sky.png,animage (24)_plants.png,animage (24)_brick.png,NAN,NAN,NAN
+animage (25).jpg,animage (25)_window.png,animage (25)_sky.png,animage (25)_plants.png,animage (25)_brick.png,animage (25)_holes.png,NAN,NAN
+animage (27).jpg,animage (27)_window.png,animage (27)_sky.png,animage (27)_plants.png,animage (27)_brick.png,animage (27)_holes.png,NAN,NAN
+animage (28).jpg,animage (28)_window.png,NAN,NAN,animage (28)_brick.png,NAN,NAN,NAN
+animage (30).jpg,animage (30)_window.png,animage (30)_sky.png,animage (30)_plants.png,animage (30)_brick.png,animage (30)_holes.png,NAN,NAN
+animage (31).jpg,animage (31)_window.png,animage (31)_sky.png,animage (31)_plants.png,animage (31)_brick.png,NAN,NAN,NAN
+animage (33).jpg,animage (33)_window.png,animage (33)_sky.png,animage (33)_plants.png,animage (33)_brick.png,NAN,NAN,NAN
+animage (34).jpg,NAN,animage (34)_sky.png,animage (34)_plants.png,animage (34)_brick.png,animage (34)_holes.png,NAN,animage (34)_sign.png
+animage (36).jpg,animage (36)_window.png,animage (36)_sky.png,animage (36)_plants.png,animage (36)_brick.png,NAN,NAN,NAN
+animage (37).jpg,animage (37)_window.png,animage (37)_sky.png,animage (37)_plants.png,animage (37)_brick.png,animage (37)_holes.png,NAN,animage (37)_sign.png
+animage (39).jpg,animage (39)_window.png,animage (39)_sky.png,animage (39)_plants.png,animage (39)_brick.png,animage (39)_holes.png,NAN,NAN
+animage (4).jpg,animage (4)_window.png,animage (4)_sky.png,animage (4)_plants.png,animage (4)_brick.png,animage (4)_holes.png,NAN,NAN
+animage (40).jpg,animage (40)_window.png,animage (40)_sky.png,animage (40)_plants.png,animage (40)_brick.png,animage (40)_holes.png,animage (40)_gate.png,NAN
+animage (41).jpg,animage (41)_window.png,animage (41)_sky.png,animage (41)_plants.png,animage (41)_brick.png,animage (41)_holes.png,animage (41)_gate.png,NAN
+animage (42).jpg,animage (42)_window.png,animage (42)_sky.png,animage (42)_plants.png,animage (42)_brick.png,animage (42)_holes.png,NAN,NAN
+animage (43).jpg,animage (43)_window.png,animage (43)_sky.png,animage (43)_plants.png,animage (43)_brick.png,animage (43)_holes.png,NAN,NAN
+animage (5).jpg,animage (5)_window.png,animage (5)_sky.png,animage (5)_plants.png,animage (5)_brick.png,animage (5)_holes.png,NAN,NAN
+animage (7).jpg,animage (7)_window.png,animage (7)_sky.png,animage (7)_plants.png,animage (7)_brick.png,animage (7)_holes.png,NAN,NAN
+animage (8).jpg,animage (8)_window.png,animage (8)_sky.png,animage (8)_plants.png,animage (8)_brick.png,NAN,NAN,NAN
+animage (9).jpg,animage (9)_window.png,animage (9)_sky.png,animage (9)_plants.png,animage (9)_brick.png,NAN,NAN,NAN
+animage.jpg,animage_window.png,animage_sky.png,animage_plants.png,animage_brick.png,animage_holes.png,animage_gate.png,animage_sign.png
+both-08-06-2019.jpg,both-08-06-2019_window.png,both-08-06-2019_sky.png,both-08-06-2019_plants.png,both-08-06-2019_brick.png,NAN,NAN,NAN
+both-10-06-2019.jpeg,both-10-06-2019_window.png,both-10-06-2019_sky.png,NAN,both-10-06-2019_brick.png,NAN,NAN,NAN
+both-13-06-2019.JPG,both-13-06-2019_window.png,both-13-06-2019_sky.png,both-13-06-2019_plants.png,both-13-06-2019_brick.png,NAN,NAN,NAN
+both-16-6-2019.jpeg,both-16-6-2019_window.png,both-16-6-2019_sky.png,NAN,both-16-6-2019_brick.png,NAN,NAN,NAN
+both-16-7-2019.jpeg,both-16-7-2019_window.png,both-16-7-2019_sky.png,both-16-7-2019_plants.png,both-16-7-2019_brick.png,both-16-7-2019_holes.png,both-16-7-2019_gate.png,both-16-7-2019_sign.png
+both-21-06-2019.jpg,both-21-06-2019_window.png,both-21-06-2019_sky.png,both-21-06-2019_plants.png,both-21-06-2019_brick.png,NAN,NAN,NAN
+both-21-6-2019.jpeg,both-21-6-2019_window.png,both-21-6-2019_sky.png,both-21-6-2019_plants.png,both-21-6-2019_brick.png,NAN,NAN,NAN
+both-22-06-2019.jpg,both-22-06-2019_window.png,both-22-06-2019_sky.png,both-22-06-2019_plants.png,both-22-06-2019_brick.png,both-22-06-2019_holes.png,NAN,NAN
+both-23-7-2019.jpeg,both-23-7-2019_window.png,both-23-7-2019_sky.png,both-23-7-2019_plants.png,both-23-7-2019_brick.png,NAN,NAN,NAN
+both2-22-06-2019.jpg,both2-22-06-2019_window.png,both2-22-06-2019_sky.png,NAN,both2-22-06-2019_brick.png,NAN,NAN,NAN
+both3-22-06-2019.JPG,both3-22-06-2019_window.png,both3-22-06-2019_sky.png,both3-22-06-2019_plants.png,both3-22-06-2019_brick.png,both3-22-06-2019_holes.png,both3-22-06-2019_gate.png,NAN
+bothwel-8-8-2019.JPG,bothwel-8-8-2019_window.png,bothwel-8-8-2019_sky.png,bothwel-8-8-2019_plants.png,bothwel-8-8-2019_brick.png,bothwel-8-8-2019_holes.png,NAN,NAN
+bothwell-10-8-2019b.jpeg,bothwell-10-8-2019b_window.png,bothwell-10-8-2019b_sky.png,bothwell-10-8-2019b_plants.png,bothwell-10-8-2019b_brick.png,bothwell-10-8-2019b_holes.png,NAN,NAN
+bothwell-10-8-2019.jpg,bothwell-10-8-2019_window.png,bothwell-10-8-2019_sky.png,bothwell-10-8-2019_plants.png,bothwell-10-8-2019_brick.png,bothwell-10-8-2019_holes.png,bothwell-10-8-2019_gate.png,bothwell-10-8-2019_sign.png
+bothwell-14-07-2019.JPG,bothwell-14-07-2019_window.png,bothwell-14-07-2019_sky.png,bothwell-14-07-2019_plants.png,bothwell-14-07-2019_brick.png,bothwell-14-07-2019_holes.png,NAN,NAN
+bothwell-15-8-2019.jpg,bothwell-15-8-2019_window.png,bothwell-15-8-2019_sky.png,bothwell-15-8-2019_plants.png,bothwell-15-8-2019_brick.png,bothwell-15-8-2019_holes.png,bothwell-15-8-2019_gate.png,NAN
+bothwell-19-05-2019.jpeg,bothwell-19-05-2019_window.png,bothwell-19-05-2019_sky.png,bothwell-19-05-2019_plants.png,bothwell-19-05-2019_brick.png,NAN,NAN,NAN
+bothwell-19-07-2019.JPG,bothwell-19-07-2019_window.png,bothwell-19-07-2019_sky.png,bothwell-19-07-2019_plants.png,bothwell-19-07-2019_brick.png,bothwell-19-07-2019_holes.png,bothwell-19-07-2019_gate.png,NAN
+bothwell-21-05-2019.png,bothwell-21-05-2019_window.png,bothwell-21-05-2019_sky.png,bothwell-21-05-2019_plants.png,bothwell-21-05-2019_brick.png,bothwell-21-05-2019_holes.png,NAN,NAN
+bothwell-22-07-2019.jpg,bothwell-22-07-2019_window.png,bothwell-22-07-2019_sky.png,bothwell-22-07-2019_plants.png,bothwell-22-07-2019_brick.png,bothwell-22-07-2019_holes.png,NAN,NAN
+bothwell-27-05-2019.jpg,bothwell-27-05-2019_window.png,bothwell-27-05-2019_sky.png,bothwell-27-05-2019_plants.png,bothwell-27-05-2019_brick.png,bothwell-27-05-2019_holes.png,bothwell-27-05-2019_gate.png,bothwell-27-05-2019_sign.png
+bothwell1-10-8-2019.jpeg,bothwell1-10-8-2019_window.png,bothwell1-10-8-2019_sky.png,bothwell1-10-8-2019_plants.png,bothwell1-10-8-2019_brick.png,bothwell1-10-8-2019_holes.png,bothwell1-10-8-2019_gate.png,bothwell1-10-8-2019_sign.png
+bothwell1-18-07-2019.jpeg,bothwell1-18-07-2019_window.png,bothwell1-18-07-2019_sky.png,bothwell1-18-07-2019_plants.png,bothwell1-18-07-2019_brick.png,bothwell1-18-07-2019_holes.png,NAN,NAN
+bothwell2-14-8-2019.jpeg,bothwell2-14-8-2019_window.png,bothwell2-14-8-2019_sky.png,bothwell2-14-8-2019_plants.png,bothwell2-14-8-2019_brick.png,bothwell2-14-8-2019_holes.png,NAN,NAN
+bothwell3-10-8-2019.jpeg,bothwell3-10-8-2019_window.png,bothwell3-10-8-2019_sky.png,bothwell3-10-8-2019_plants.png,bothwell3-10-8-2019_brick.png,bothwell3-10-8-2019_holes.png,bothwell3-10-8-2019_gate.png,bothwell3-10-8-2019_sign.png
+bothwell3-14-8-2019.jpeg,bothwell3-14-8-2019_window.png,bothwell3-14-8-2019_sky.png,bothwell3-14-8-2019_plants.png,bothwell3-14-8-2019_brick.png,bothwell3-14-8-2019_holes.png,bothwell3-14-8-2019_gate.png,bothwell3-14-8-2019_sign.png
+Imageb.jpeg,Imageb_window.png,Imageb_sky.png,Imageb_plants.png,Imageb_brick.png,Imageb_holes.png,NAN,NAN
+Image.jpg,Image_window.png,Image_sky.png,Image_plants.png,Image_brick.png,Image_holes.png,Image_gate.png,Image_sign.png
+image1.jpeg,image1_window.png,image1_sky.png,image1_plants.png,image1_brick.png,image1_holes.png,image1_gate.png,image1_sign.png
+IMG_1624.JPG,IMG_1624_window.png,IMG_1624_sky.png,IMG_1624_plants.png,IMG_1624_brick.png,IMG_1624_holes.png,NAN,NAN
+IMG_20190809_142644_resized_20190906_013704772.jpg,IMG_20190809_142644_resized_20190906_013704772_window.png,IMG_20190809_142644_resized_20190906_013704772_sky.png,NAN,IMG_20190809_142644_resized_20190906_013704772_brick.png,NAN,NAN,NAN
+IMG_20190914_142015404.jpg,IMG_20190914_142015404_window.png,IMG_20190914_142015404_sky.png,IMG_20190914_142015404_plants.png,IMG_20190914_142015404_brick.png,IMG_20190914_142015404_holes.png,IMG_20190914_142015404_gate.png,IMG_20190914_142015404_sign.png
+IMG_20190925_103817507_HDR (1).jpg,IMG_20190925_103817507_HDR (1)_window.png,IMG_20190925_103817507_HDR (1)_sky.png,NAN,IMG_20190925_103817507_HDR (1)_brick.png,IMG_20190925_103817507_HDR (1)_holes.png,IMG_20190925_103817507_HDR (1)_gate.png,IMG_20190925_103817507_HDR (1)_sign.png
+IMG_20190925_103817507_HDR.jpg,IMG_20190925_103817507_HDR_window.png,IMG_20190925_103817507_HDR_sky.png,IMG_20190925_103817507_HDR_plants.png,IMG_20190925_103817507_HDR_brick.png,IMG_20190925_103817507_HDR_holes.png,IMG_20190925_103817507_HDR_gate.png,IMG_20190925_103817507_HDR_sign.png
+IMG_4815.JPG,IMG_4815_window.png,IMG_4815_sky.png,IMG_4815_plants.png,IMG_4815_brick.png,NAN,NAN,NAN
+img_5676.jpg,img_5676_window.png,img_5676_sky.png,img_5676_plants.png,img_5676_brick.png,img_5676_holes.png,NAN,NAN
+IMG_7054.jpg,IMG_7054_window.png,IMG_7054_sky.png,IMG_7054_plants.png,IMG_7054_brick.png,IMG_7054_holes.png,IMG_7054_gate.png,NAN
+WhatsApp Image 2019-09-02 at 12.27.11.jpeg,WhatsApp Image 2019-09-02 at 12.27.11_window.png,WhatsApp Image 2019-09-02 at 12.27.11_sky.png,WhatsApp Image 2019-09-02 at 12.27.11_plants.png,WhatsApp Image 2019-09-02 at 12.27.11_brick.png,WhatsApp Image 2019-09-02 at 12.27.11_holes.png,NAN,NAN
+WhatsApp Image 2019-09-07 at 16.48.04.jpeg,WhatsApp Image 2019-09-07 at 16.48.04_window.png,WhatsApp Image 2019-09-07 at 16.48.04_sky.png,WhatsApp Image 2019-09-07 at 16.48.04_plants.png,WhatsApp Image 2019-09-07 at 16.48.04_brick.png,WhatsApp Image 2019-09-07 at 16.48.04_holes.png,WhatsApp Image 2019-09-07 at 16.48.04_gate.png,WhatsApp Image 2019-09-07 at 16.48.04_sign.png
+WhatsApp Image 2019-10-05 at 10.43.56.jpeg,WhatsApp Image 2019-10-05 at 10.43.56_window.png,NAN,WhatsApp Image 2019-10-05 at 10.43.56_plants.png,WhatsApp Image 2019-10-05 at 10.43.56_brick.png,WhatsApp Image 2019-10-05 at 10.43.56_holes.png,WhatsApp Image 2019-10-05 at 10.43.56_gate.png,WhatsApp Image 2019-10-05 at 10.43.56_sign.png
+WhatsApp Image 2019-10-05 at 10.44.01.jpeg,NAN,WhatsApp Image 2019-10-05 at 10.44.01_sky.png,NAN,WhatsApp Image 2019-10-05 at 10.44.01_brick.png,NAN,NAN,NAN
+WhatsApp Image 2019-10-05 at 10.44.12.jpeg,WhatsApp Image 2019-10-05 at 10.44.12_window.png,WhatsApp Image 2019-10-05 at 10.44.12_sky.png,WhatsApp Image 2019-10-05 at 10.44.12_plants.png,WhatsApp Image 2019-10-05 at 10.44.12_brick.png,WhatsApp Image 2019-10-05 at 10.44.12_holes.png,WhatsApp Image 2019-10-05 at 10.44.12_gate.png,NAN
+WhatsApp Image 2019-10-05 at 15.21.02.jpeg,WhatsApp Image 2019-10-05 at 15.21.02_window.png,WhatsApp Image 2019-10-05 at 15.21.02_sky.png,WhatsApp Image 2019-10-05 at 15.21.02_plants.png,WhatsApp Image 2019-10-05 at 15.21.02_brick.png,WhatsApp Image 2019-10-05 at 15.21.02_holes.png,WhatsApp Image 2019-10-05 at 15.21.02_gate.png,WhatsApp Image 2019-10-05 at 15.21.02_sign.png
+WhatsApp Image 2019-10-05 at 15.21.03.jpeg,WhatsApp Image 2019-10-05 at 15.21.03_window.png,WhatsApp Image 2019-10-05 at 15.21.03_sky.png,WhatsApp Image 2019-10-05 at 15.21.03_plants.png,WhatsApp Image 2019-10-05 at 15.21.03_brick.png,WhatsApp Image 2019-10-05 at 15.21.03_holes.png,WhatsApp Image 2019-10-05 at 15.21.03_gate.png,WhatsApp Image 2019-10-05 at 15.21.03_sign.png
+WhatsApp Image 2019-10-12 at 11.17.04.jpeg,WhatsApp Image 2019-10-12 at 11.17.04_window.png,WhatsApp Image 2019-10-12 at 11.17.04_sky.png,WhatsApp Image 2019-10-12 at 11.17.04_plants.png,WhatsApp Image 2019-10-12 at 11.17.04_brick.png,NAN,NAN,NAN
+WhatsApp Image 2019-11-02 at 14.51.05.jpeg,WhatsApp Image 2019-11-02 at 14.51.05_window.png,WhatsApp Image 2019-11-02 at 14.51.05_sky.png,WhatsApp Image 2019-11-02 at 14.51.05_plants.png,WhatsApp Image 2019-11-02 at 14.51.05_brick.png,WhatsApp Image 2019-11-02 at 14.51.05_holes.png,WhatsApp Image 2019-11-02 at 14.51.05_gate.png,NAN
+WhatsApp Image 2019-11-02 at 14.51.28.jpeg,WhatsApp Image 2019-11-02 at 14.51.28_window.png,WhatsApp Image 2019-11-02 at 14.51.28_sky.png,WhatsApp Image 2019-11-02 at 14.51.28_plants.png,WhatsApp Image 2019-11-02 at 14.51.28_brick.png,WhatsApp Image 2019-11-02 at 14.51.28_holes.png,WhatsApp Image 2019-11-02 at 14.51.28_gate.png,NAN
