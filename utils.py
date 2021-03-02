@@ -34,6 +34,21 @@ import time
 
 import scipy
 
+Deeplabv3plus_path = r'E:\codes\python\area51m'
+ModelPath = r'E:\data\MODELS' 
+
+from utils import *
+import sys
+import os
+
+device = torch.device("cuda:0")
+
+sys.path.append(Deeplabv3plus_path)
+sys.path.append(Deeplabv3plus_path+r'\pytorch_deeplab_xception')
+from pytorch_deeplab_xception.modeling import deeplab
+
+os.environ['TORCH_HOME'] = ModelPath
+
 
 
 ############## functions used to retrieve and pre-process labelled images ##############
@@ -471,23 +486,9 @@ def predict(image,transform_deeplab,transform_deeplab_detail,dlab2,dlab2_detail,
         return binary_image
 
     
-def overlay(image,mask,alpha,color=None,color_bg=None,alpha_bg=None): # decode the segmented results using specified colors
-    
-    if isinstance(image,torch.Tensor):
-        image = image.detach().cpu().numpy()
-    if isinstance(image,PIL.JpegImagePlugin.JpegImageFile):
-        image = np.array(image)
-    if len(image.shape) <= 1:
-        image = image.reshape(-1,1)
+def overlay(image,mask,alpha): # decode the segmented results using specified colors
         
-    if isinstance(mask,PIL.Image.Image):
-        return Image.blend(Image.fromarray(image), mask, alpha)
-    else:
-        t = mask.astype(bool)
-        f = np.logical_not(mask.astype(bool))
-        image[t,:] = image[t,:]*(1-alpha)+np.array(color)*alpha
-        image[f,:] = image[f,:]*(1-alpha_bg)+np.array(color_bg)*alpha_bg
-        return Image.fromarray(image)
+    return Image.blend(image.convert('RGB'), Image.fromarray(mask).convert('RGB'), alpha)
 
 ############## functions used to position the window and plants ##############
 
@@ -619,7 +620,9 @@ def outter(polygon,out = False): # another way to align two windows
 def decode_color(image,colors): # decode the segmented results using specified colors
     
     if isinstance(image,torch.Tensor):
+        
         image = image.detach().cpu().numpy()
+        
     if len(image.shape) <= 1:
         
         image = image.reshape(-1,1)
@@ -660,7 +663,25 @@ def draw_bounding_box(image,model,transform,colors,labelnames,dpi,fontsize = 14,
             plt.text(text_com[i][0][0],text_com[i][0][1],text_com[i][1],color = 'white',fontsize= fontsize)
             plt.text(text_com[i][0][0],text_com[i][0][1],text_com[i][1],color = colour,alpha=0.15,fontsize = fontsize)
             
-def predict_by_class(img,transform_deeplab,dlab2,class_,colors = None):
+def load_model(Number_of_Class,Image_size,Backbone,Path,Name):
+
+    transform = transforms.Compose([transforms.Resize(Image_size),
+                                    transforms.ToTensor(),
+                                    transforms.Normalize([0.485, 0.456, 0.406],[0.229, 0.224, 0.225])])
+
+    model = deeplab.DeepLab(num_classes=Number_of_Class,backbone = Backbone).to(device)
+
+    model.load_state_dict(torch.load(r'{0}\{1}_last.pt'.format(Path,Name)))
+
+    _ = model.eval()
+
+    for p in model.parameters():
+        
+        p.requires_grad = False
+        
+    return model,transform
+            
+def predict_by_class(img,transform_deeplab,dlab2,class_):
     
     validation = transform_deeplab(img).unsqueeze(0).cuda()
     
@@ -673,11 +694,7 @@ def predict_by_class(img,transform_deeplab,dlab2,class_,colors = None):
     
     if class_ == 'all':
         
-        if colors == None:
-            
-            raise Exception('Please specify colors')
-        
-        return Image.fromarray(decode_color(res,colors))
+        return res
     
     else:
     
@@ -686,3 +703,72 @@ def predict_by_class(img,transform_deeplab,dlab2,class_,colors = None):
         res[res == class_] = 1
 
         return res
+
+def making_masks(colors,
+            mask_alpha,
+            Path,
+            InputFolder,
+            OutputFolder,
+            transform_deeplab,
+            transform_deeplab_detail,
+            dlab2,
+            dlab2_detail,
+            class_label,
+            two_stage = False,
+            scale = 0.05):
+
+    names = os.listdir(InputFolder)
+    
+    if os.path.exists(r'{0}\{1}'.format(Path,OutputFolder)) == False:
+        
+        os.mkdir(r'{0}\{1}'.format(Path,OutputFolder))
+
+    for i in names:
+        
+        ori_img = Image.open(r'{0}\{1}'.format(InputFolder,i))
+        
+        try:
+            
+            if two_stage:
+                
+                if class_label != 'all':
+                
+                    predicted_img = predict(ori_img,
+                                            transform_deeplab,
+                                            transform_deeplab_detail,
+                                            dlab2,
+                                            dlab2_detail,
+                                            class_label,
+                                            ori_img.size,
+                                            scale = scale)
+                    
+                    predicted_img = (predicted_img>0.5).astype(np.uint8)
+                    
+                    colors = [(0,0,0),(255,255,255)]
+                    
+                else:
+                    
+                    raise('Please specify a class')
+                
+            else:
+                
+                predicted_img = predict_by_class(ori_img,transform_deeplab,dlab2,class_label)
+                
+                if colors == 'binary':
+        
+                    colors = [(0,0,0),(255,255,255)]
+            
+            masking = decode_color(predicted_img,colors)
+            
+            overlay(image = ori_img,
+                    mask = masking,
+                    alpha = mask_alpha).save('{0}\{1}\{2}'.format(Path,OutputFolder,i))
+            
+            print('finished {0}'.format(i))
+            
+        except:
+            
+            print('error {0}'.format(i))
+            
+            continue    
+    
