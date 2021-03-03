@@ -72,3 +72,11 @@ Finally, in order to better alleviate the disturbance of distortion caused by ca
 ![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/20210302/gitpic/figure10.png)
 |:--:| 
 | *Final product of a 3D photogrammetry model with segmented textures* |
+
+## Dependencies
+
+OpenMVS (https://github.com/cdcseacave/openMVS)
+
+VisualSFM (http://ccwu.me/vsfm/)
+
+DeepLabV3+ (https://github.com/jfzhang95/pytorch-deeplab-xception)
