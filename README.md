@@ -12,22 +12,22 @@ This model is used to automatically segment each object within crowdsourced imag
 ## Process
 
 ### Prepare input images from crowdsourced with the following image as an example
-![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/original_image.jpg)
+![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/20210302/gitpic/original_image.jpg)
 |:--:| 
 | *An example of training image* |
 
 
 ### Hand labelling the image using an online tool (https://app.labelbox.com/)
-![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/working.PNG)
+![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/20210302/gitpic/working.PNG)
 |:--:| 
 | *The interface of labelling tool* |
 ### Obtain the label for training examples (overall and local region)
 
-![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/label.png)
+![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/20210302/gitpic/label.png)
 |:--:| 
 | *The label of overall classes for the first model* |
 
-![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/segmentated_label.png)
+![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/20210302/gitpic/segmentated_label.png)
 |:--:| 
 | *The label of binary classes for the second model to refine prediction* |
 
@@ -37,31 +37,31 @@ This process involves downloading masks from the Labelbox. These codes correspon
 
 Deeplab v3+ with a backbone model of resnet101 is used in this project, implemented by https://github.com/jfzhang95/pytorch-deeplab-xception using PyTorch.
 
-For details of training, I freeze the parameters of the backbone model, and only trained the deeplab head parameters with epoch number of 100 and learning rate of 0.01 for the first model, and epoch number of 100 and same learning rate for the second model. The optimizer is Adam (https://arxiv.org/abs/1412.6980) and the loss function is cross entropy loss with 8 classes for the first model and 2 classes for the second model. A scheduling stepdown of learning rate is applied to both models, which means the learning rate will reduce to its 1/10 every epoch of 50 (for the first model) or 33 (for the second model). This is used for the optimizer to better find the minimum point of the loss function.
+For details of training, the parameters of the backbone model are frozen, and only trained the deeplab head parameters with epoch number of 100 and learning rate of 0.01 for the first model, and epoch number of 100 and same learning rate for the second model. The optimizer is Adam, and the loss function is cross entropy loss with 8 classes for the first model and 2 classes for the second model. A scheduling stepdown of learning rate is applied to both models, which means the learning rate will reduce to its 1/10 every epoch of 50 (for the first model) or 33 (for the second model). This is used for the optimizer to better find the minimum point of the loss function.
 
 ### Results of overall segmentation
 
-![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/predicted.png)
+![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/20210302/gitpic/predicted.png)
 |:--:| 
 | *Segmented objects* |
 
-![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/superimpose.png)
+![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/20210302/gitpic/superimpose.png)
 |:--:| 
 | *comparison of label and segmentation results, with an Intersection over Union (IoU) of 0.82966 for all classes and 0.56250 for plants* |
 
 ### Reverse selection of the bounding box of the detected objects
 
-Since I would like to crop the area of plants, and further refine them using the second model, I need to obtain the coordinates of a bounding box of the segmented objects based on its maximum and minimum vertical and horizontal coordinates. This is achieved by using DBSCAN of sklearn (https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html), which is an unsupervised clustering algorithm that automatically partitions disjoint objects. Therefore, distinguishing objects within a class can be partitioned to be drawn an individual bounding box. Once the coordinates of each object are determined, bounding boxes of each disjoint object can be drawn as shown by the following figure.
+In order to crop the area of plants, and further refine them using the second model,the coordinates of a bounding box of the segmented objects need to be obtained based on its maximum and minimum vertical and horizontal coordinates. This is achieved by using DBSCAN of sklearn (https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html), which is an unsupervised clustering algorithm that automatically partitions disjoint objects. Therefore, distinguishing objects within a class can be partitioned to be drawn an individual bounding box. Once the coordinates of each object are determined, bounding boxes of each disjoint object can be drawn as shown by the following figure.
 
-![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/fig7_annotations_with_rect.png)
+![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/20210302/gitpic/fig7_annotations_with_rect.png)
 |:--:| 
 | *bounding box of each object* |
 
 ### Refined results
 
-After having the bounding box, I can crop the plant from the whole image, and feed it into the second model to refine the prediction. The refined prediction is shown as follow.
+After having the bounding box, the plant can be cropped from the whole image, and feed it into the second model to refine the prediction. The refined prediction is shown as follow.
 
-![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/figure3+.png)
+![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/20210302/gitpic/figure3+.png)
 |:--:| 
 | *selecting interested local area and refining predictions in the area* |
 
@@ -69,6 +69,6 @@ After having the bounding box, I can crop the plant from the whole image, and fe
 
 Finally, in order to better alleviate the disturbance of distortion caused by camera angle in measuring the area of plant, the photogrammetry is applied to obtain an all-around view of the plant. The final product is a 3D photogrammetry model with segmented textures as shown below.
 
-![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/figure10.png)
+![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/20210302/gitpic/figure10.png)
 |:--:| 
 | *Final product of a 3D photogrammetry model with segmented textures* |
