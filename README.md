@@ -43,7 +43,7 @@ For details of training, the parameters of the backbone model are frozen, and th
 
 ![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/20210302/gitpic/superimpose.png)
 |:--:| 
-| *comparison of label and segmentation results, with an Intersection over Union (IoU) of 0.82966 for all classes and 0.56250 for plants* |
+| *Comparison of label and segmentation results* |
 
 ### Reverse selection of the bounding box of the detected objects
 
