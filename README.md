@@ -64,7 +64,3 @@ After having the bounding box, I can crop the plant from the whole image, and fe
 ![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/compare.png)
 |:--:| 
 | *selecting interested local area and refining predictions in the area* |
-
-![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/re1com.png)
-|:--:| 
-| *comparison of label and segmentation results in the local refined area, with an Intersection over Union (IoU) of 0.80745, increased from 0.56250* |
