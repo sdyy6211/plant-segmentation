@@ -1,9 +1,7 @@
 # Plant segmentation combined with photogrammetry
 ## Introduction of the model
 
-This model is a semantic image segmentation model, which assigns label to each pixel of an image to partition different objects into segments. Semantic image segmentation means that there is no distinguishing between different plants, e.g. plant_1 and plant_2. They are all classified as plants as a whole. There exists models which can distinguish different objects of the same category. However, in this case, this function does not provide too much helps.
-
-The whole model is composed of two parts, namely backbone part and classifier part. The backbone part has been pre-trained on a large dataset (may exceed over 1 million of training examples) to have a generalizing ability, while the classifier part is untrained, and should be fine-tuned based on specific tasks. This structure takes the advantage of transfer learning ability of deep learning models, which means that a well trained model can perform well in different similar tasks.
+This model is a semantic image segmentation model, which assigns label to each pixel of an image to partition different objects into segments. The whole model is composed of two parts, namely backbone part and classifier part. The backbone part is resnet101 which has been pre-trained, and the classifier part (DeepLabV3+ head, implemented by https://github.com/jfzhang95/pytorch-deeplab-xception using PyTorch) is fine-tuned based on this specific task. 
 
 ## The aim of this model
 
@@ -35,9 +33,7 @@ This process involves downloading masks from the Labelbox. These codes correspon
 
 ### Train the two models (the first model with 8 classes and a second model for binary classes) using the original images and labels
 
-Deeplab v3+ with a backbone model of resnet101 is used in this project, implemented by https://github.com/jfzhang95/pytorch-deeplab-xception using PyTorch.
-
-For details of training, the parameters of the backbone model are frozen, and only trained the deeplab head parameters with epoch number of 100 and learning rate of 0.01 for the first model, and epoch number of 100 and same learning rate for the second model. The optimizer is Adam, and the loss function is cross entropy loss with 8 classes for the first model and 2 classes for the second model. A scheduling stepdown of learning rate is applied to both models, which means the learning rate will reduce to its 1/10 every epoch of 50 (for the first model) or 33 (for the second model). This is used for the optimizer to better find the minimum point of the loss function.
+For details of training, the parameters of the backbone model are frozen, and the deeplab head parameters are trained with epoch number of 100 and learning rate of 0.01 for the first model, and epoch number of 100 and same learning rate for the second model. The optimizer is Adam, and the loss function is cross entropy loss with 8 classes for the first model and 2 classes for the second model. A scheduling stepdown of learning rate is applied to both models, which means the learning rate will reduce to its 1/10 every epoch of 50. This is used for the optimizer to better find the minimum point of the loss function.
 
 ### Results of overall segmentation
 
