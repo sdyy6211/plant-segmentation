@@ -5,13 +5,6 @@ This model is a semantic image segmentation model, which assigns label to each p
 
 The whole model is composed of two parts, namely backbone part and classifier part. The backbone part has been pre-trained on a large dataset (may exceed over 1 million of training examples) to have a generalizing ability, while the classifier part is untrained, and should be fine-tuned based on specific tasks. This structure takes the advantage of transfer learning ability of deep learning models, which means that a well trained model can perform well in different similar tasks.
 
-The main metric used to measure the performance of the model is Intersection over Union (IoU), which is 
-
-![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/IOU.png)
-|:--:| 
-| *Visual explanation of IoU* |
-
-
 ## The aim of this model
 
 This model is used to automatically segment each object within crowdsourced images, which are unstructured data that is considered as difficult to be processed automatically. The practical application of the model is to automatically detect and monitor the changes of historical sites from those unstructured image data overtime. In this case, the aim is to detect and monitor the growth of the plant on the wall of Bothwell castle. 
@@ -46,8 +39,6 @@ Deeplab v3+ with a backbone model of resnet101 is used in this project, implemen
 
 For details of training, I freeze the parameters of the backbone model, and only trained the deeplab head parameters with epoch number of 100 and learning rate of 0.01 for the first model, and epoch number of 100 and same learning rate for the second model. The optimizer is Adam (https://arxiv.org/abs/1412.6980) and the loss function is cross entropy loss with 8 classes for the first model and 2 classes for the second model. A scheduling stepdown of learning rate is applied to both models, which means the learning rate will reduce to its 1/10 every epoch of 50 (for the first model) or 33 (for the second model). This is used for the optimizer to better find the minimum point of the loss function.
 
-update on 6.4 -- the two models were retrained by using Automatic Mixed Precision (AMP), which enlarges the resolution of resized images (from 400x250 to 900x900 for the first model and 400x400 for the second model) by reducing required RAM in training session given the same GPU (RTX 2070 with 8GB RAM). By doing so, the model now can segment the images in a more precise way since it operates on images with higher resolution.
-
 ### Results of overall segmentation
 
 ![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/predicted.png)
@@ -73,27 +64,3 @@ After having the bounding box, I can crop the plant from the whole image, and fe
 ![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/compare.png)
 |:--:| 
 | *selecting interested local area and refining predictions in the area* |
-
-![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/re1com.png)
-|:--:| 
-| *comparison of label and segmentation results in the local refined area, with an Intersection over Union (IoU) of 0.80745, increased from 0.56250* |
-
-### Image registration
-
-Since the area of a plant in a picture is significantly affected by the angel of the picture taken, it would be better to register two images with different angels based on the window in the image using an affine transformation. The registration has three steps.
-
-The first step is to find the most similar image from the training set. The similarity is measured by the *cv2.matchTemplate*
-
-The second step is to detect the position of the window using the first model combined with a reverse selection of the bounding box of the window, which is similar to the detection of plants.
-
-The third step is to select the area of window and make affine transformation on the whole image. The selection of area of window is based on traditional computer vision toolkits in opencv rather than deep learning.
-
-![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/rect.png)
-|:--:| 
-| *The process of image registration based on the window* |
-
-![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/register_outfalse.png)
-|:--:| 
-| *Final result* |
-
-The final IoU of the two models on the test set are approximately 62% and 53% for the first and second model respectively.
