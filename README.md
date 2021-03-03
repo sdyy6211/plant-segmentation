@@ -51,7 +51,7 @@ For details of training, I freeze the parameters of the backbone model, and only
 
 ### Reverse selection of the bounding box of the detected objects
 
-Since I would like to crop the area of plants, and further refine them using the second model, I need to obtain the coordinates of a bounding box of the segmented objects based on its maximum and minimum vertical and horizontal coordinates. This is achieved by using DBSCAN of sklearn (https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html) in *get_region_v2* of *utils_d.py*, which is an unsupervised clustering algorithm that automatically partitions disjoint objects. Therefore, distinguishing objects within a class can be partitioned to be drawn an individual bounding box. Once the coordinates of each object are determined, bounding boxes of each disjoint object can be drawn as shown by the following figure.
+Since I would like to crop the area of plants, and further refine them using the second model, I need to obtain the coordinates of a bounding box of the segmented objects based on its maximum and minimum vertical and horizontal coordinates. This is achieved by using DBSCAN of sklearn (https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html), which is an unsupervised clustering algorithm that automatically partitions disjoint objects. Therefore, distinguishing objects within a class can be partitioned to be drawn an individual bounding box. Once the coordinates of each object are determined, bounding boxes of each disjoint object can be drawn as shown by the following figure.
 
 ![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/fig7_annotations_with_rect.png)
 |:--:| 
@@ -61,6 +61,14 @@ Since I would like to crop the area of plants, and further refine them using the
 
 After having the bounding box, I can crop the plant from the whole image, and feed it into the second model to refine the prediction. The refined prediction is shown as follow.
 
-![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/compare.png)
+![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/figure3+.png)
 |:--:| 
 | *selecting interested local area and refining predictions in the area* |
+
+### Combination with photogrammetry
+
+Finally, in order to better alleviate the disturbance of distortion caused by camera angle in measuring the area of plant, the photogrammetry is applied to obtain an all-around view of the plant. The final product is a 3D photogrammetry model with segmented textures as shown below.
+
+![](https://github.com/sdyy6211/Dissertation_Image_segmentation/blob/master/gitpic/figure10.png)
+|:--:| 
+| *Final product of a 3D photogrammetry model with segmented textures* |
