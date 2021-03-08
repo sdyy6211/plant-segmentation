@@ -69,15 +69,7 @@ Finally, in order to better alleviate the disturbance of distortion caused by ca
 |:--:| 
 | *Final product of a 3D photogrammetry model with segmented textures* |
 
-<div class="sketchfab-embed-wrapper">
-    <iframe title="plant-segmentation" src="https://sketchfab.com/models/f425fca4bced4275a237d5aa97b93768/embed">
-    </iframe>
-   <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;">
-        <a href="https://sketchfab.com/3d-models/plant-segmentation-f425fca4bced4275a237d5aa97b93768" target="_blank" style="font-weight: bold; color: #1CAAD9;">plant-segmentation</a>
-        by <a href="https://sketchfab.com/krobelusv" target="_blank" style="font-weight: bold; color: #1CAAD9;">krobelusv</a>
-        on <a href="https://sketchfab.com?utm_medium=embed&utm_source=website&utm_campaign=share-popup" target="_blank" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
-    </p>
-</div>
+Sketchfab link: https://skfb.ly/6Zz7R
 
 ## Dependencies
 
